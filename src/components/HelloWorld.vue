@@ -14,27 +14,29 @@
   </p>
 
   <button @click="count++">count is: {{ count }}</button>
+  <button @click="emit('date', 5)">emit date</button>
+  <button @click="emit('day', 'dfdjhfd')">emit day</button>
   <p>
     Edit
     <code>components/HelloWorld.vue</code> to test hot module replacement.
   </p>
 </template>
 
-<script lang="ts">
-import { ref, defineComponent } from 'vue'
-export default defineComponent({
-  name: 'HelloWorld',
-  props: {
+<script setup lang="ts">
+  import { ref, defineEmit, defineProps } from 'vue'
+const props = defineProps({
     msg: {
       type: String,
       required: true
     }
-  },
-  setup: () => {
-    const count = ref(0)
-    return { count }
-  }
-})
+  });
+
+  const emit = defineEmit<
+    (e: 'date',id: number) => void
+    | ((e: 'day', id: string) => void)
+>();
+
+const count = ref(0)
 </script>
 
 <style scoped>
