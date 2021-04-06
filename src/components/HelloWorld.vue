@@ -31,10 +31,10 @@ const props = defineProps({
     }
   });
 
-  const emit = defineEmit<
-    (e: 'date',id: number) => void
-    | ((e: 'day', id: string) => void)
->();
+  const emit = defineEmit<{
+    (e: 'date',id: number): void
+    (e: 'day', id: string): void
+}>();
 
 const count = ref(0)
 </script>
